@@ -2156,6 +2156,30 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-15" value="opt" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-15" value="req"></label></td>
                         </tr>
+                        <!-- 동반 참석 사용 여부 -->
+                        <tr style="background:#f8f9fb;">
+                          <td colspan="6" style="padding:10px 12px;">
+                            <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+                              <span style="font-size:12px;font-weight:700;color:#333;min-width:130px;">동반 참석 사용 여부</span>
+                              <label style="display:inline-flex;align-items:center;gap:5px;font-size:12px;cursor:pointer;">
+                                <input type="radio" name="companion-use" value="use" onchange="toggleCompanionRequired(true)"> 사용
+                              </label>
+                              <label style="display:inline-flex;align-items:center;gap:5px;font-size:12px;cursor:pointer;">
+                                <input type="radio" name="companion-use" value="nouse" checked onchange="toggleCompanionRequired(false)"> 미사용
+                              </label>
+                              <!-- 하위 옵션: 입력 필수 여부 (사용 선택 시 노출) -->
+                              <div id="companion-required-wrap" style="display:none;align-items:center;gap:16px;border-left:2px solid #d0d7e2;padding-left:20px;margin-left:4px;">
+                                <span style="font-size:12px;font-weight:600;color:#555;">입력 필수 여부</span>
+                                <label style="display:inline-flex;align-items:center;gap:5px;font-size:12px;cursor:pointer;">
+                                  <input type="radio" name="companion-req" value="req"> 필수
+                                </label>
+                                <label style="display:inline-flex;align-items:center;gap:5px;font-size:12px;cursor:pointer;">
+                                  <input type="radio" name="companion-req" value="opt" checked> 선택
+                                </label>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
                       </tbody>
                     </table>
                     <div style="display:flex;justify-content:flex-end;margin-top:14px;gap:8px;">
@@ -2373,6 +2397,37 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
         <div class="ifg-row"><div class="ifg-label">학점</div><div class="ifg-control">3 학점</div></div>
         <div class="ifg-row"><div class="ifg-label">첨부파일</div><div class="ifg-control"><a href="#" style="color:var(--primary);font-size:12px;">교육과정소개서.pdf</a></div></div>
       </div>
+      <!-- 동반 참석자 -->
+      <div style="font-size:12px;font-weight:700;color:#1a73e8;border-bottom:1px solid #e3f0fd;padding-bottom:4px;margin-bottom:2px;margin-top:14px;">동반 참석자</div>
+      <div class="idp-form-grid">
+        <table style="width:100%;border-collapse:collapse;font-size:12px;margin-top:4px;">
+          <thead>
+            <tr>
+              <th style="background:#f0f2f5;border:1px solid #dde1e7;padding:6px 8px;text-align:center;width:36px;">No.</th>
+              <th style="background:#f0f2f5;border:1px solid #dde1e7;padding:6px 8px;text-align:left;padding-left:10px;">이름</th>
+              <th style="background:#f0f2f5;border:1px solid #dde1e7;padding:6px 8px;text-align:center;">아이디</th>
+              <th style="background:#f0f2f5;border:1px solid #dde1e7;padding:6px 8px;text-align:center;">사번</th>
+              <th style="background:#f0f2f5;border:1px solid #dde1e7;padding:6px 8px;text-align:center;">부서</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border:1px solid #e8eaed;padding:6px 8px;text-align:center;">1</td>
+              <td style="border:1px solid #e8eaed;padding:6px 10px;">박*준</td>
+              <td style="border:1px solid #e8eaed;padding:6px 8px;text-align:center;">park**@ewha.com</td>
+              <td style="border:1px solid #e8eaed;padding:6px 8px;text-align:center;">20230041</td>
+              <td style="border:1px solid #e8eaed;padding:6px 8px;text-align:center;">기술연구소</td>
+            </tr>
+            <tr>
+              <td style="border:1px solid #e8eaed;padding:6px 8px;text-align:center;">2</td>
+              <td style="border:1px solid #e8eaed;padding:6px 10px;">최*영</td>
+              <td style="border:1px solid #e8eaed;padding:6px 8px;text-align:center;">choi**@ewha.com</td>
+              <td style="border:1px solid #e8eaed;padding:6px 8px;text-align:center;">20220058</td>
+              <td style="border:1px solid #e8eaed;padding:6px 8px;text-align:center;">기술연구소</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
@@ -2425,13 +2480,46 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
         <div class="ifg-row"><div class="ifg-label">전체교육평가</div><div class="ifg-control">매우 만족</div></div>
         <div class="ifg-row"><div class="ifg-label">첨부파일</div><div class="ifg-control"><a href="#" style="color:var(--primary);font-size:12px;">컨퍼런스_결과보고서.pdf</a></div></div>
       </div>
+      <!-- 동반 참석자 -->
+      <div style="font-size:12px;font-weight:700;color:#1a73e8;border-bottom:1px solid #e3f0fd;padding-bottom:4px;margin-bottom:2px;margin-top:14px;">동반 참석자</div>
+      <div class="idp-form-grid">
+        <table style="width:100%;border-collapse:collapse;font-size:12px;margin-top:4px;">
+          <thead>
+            <tr>
+              <th style="background:#f0f2f5;border:1px solid #dde1e7;padding:6px 8px;text-align:center;width:36px;">No.</th>
+              <th style="background:#f0f2f5;border:1px solid #dde1e7;padding:6px 8px;text-align:left;padding-left:10px;">이름</th>
+              <th style="background:#f0f2f5;border:1px solid #dde1e7;padding:6px 8px;text-align:center;">아이디</th>
+              <th style="background:#f0f2f5;border:1px solid #dde1e7;padding:6px 8px;text-align:center;">사번</th>
+              <th style="background:#f0f2f5;border:1px solid #dde1e7;padding:6px 8px;text-align:center;">부서</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="border:1px solid #e8eaed;padding:6px 8px;text-align:center;">1</td>
+              <td style="border:1px solid #e8eaed;padding:6px 10px;">정*훈</td>
+              <td style="border:1px solid #e8eaed;padding:6px 8px;text-align:center;">jung**@ewha.com</td>
+              <td style="border:1px solid #e8eaed;padding:6px 8px;text-align:center;">20210077</td>
+              <td style="border:1px solid #e8eaed;padding:6px 8px;text-align:center;">인사팀</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
 
 
 <script>
-/* ── 탭 전환 ── */
+/* ── 동반 참석 사용여부 토글 ── */
+function toggleCompanionRequired(enabled) {
+  var wrap = document.getElementById('companion-required-wrap');
+  wrap.style.display = enabled ? 'flex' : 'none';
+  if (!enabled) {
+    document.querySelector('input[name="companion-req"][value="opt"]').checked = true;
+  }
+}
+
+
 function switchOutsideTab(tab) {
   ['apply','report','config'].forEach(function(t) {
     document.getElementById('panel-' + t).classList.toggle('active', t === tab);
