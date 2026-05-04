@@ -2156,29 +2156,13 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-15" value="opt" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-15" value="req"></label></td>
                         </tr>
-                        <!-- 동반 참석 사용 여부 -->
-                        <tr style="background:#f8f9fb;">
-                          <td colspan="6" style="padding:10px 12px;">
-                            <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
-                              <span style="font-size:12px;font-weight:700;color:#333;min-width:130px;">동반 참석 사용 여부</span>
-                              <label style="display:inline-flex;align-items:center;gap:5px;font-size:12px;cursor:pointer;">
-                                <input type="radio" name="companion-use" value="use" onchange="toggleCompanionRequired(true)"> 사용
-                              </label>
-                              <label style="display:inline-flex;align-items:center;gap:5px;font-size:12px;cursor:pointer;">
-                                <input type="radio" name="companion-use" value="nouse" checked onchange="toggleCompanionRequired(false)"> 미사용
-                              </label>
-                              <!-- 하위 옵션: 입력 필수 여부 (사용 선택 시 노출) -->
-                              <div id="companion-required-wrap" style="display:none;align-items:center;gap:16px;border-left:2px solid #d0d7e2;padding-left:20px;margin-left:4px;">
-                                <span style="font-size:12px;font-weight:600;color:#555;">입력 필수 여부</span>
-                                <label style="display:inline-flex;align-items:center;gap:5px;font-size:12px;cursor:pointer;">
-                                  <input type="radio" name="companion-req" value="req"> 필수
-                                </label>
-                                <label style="display:inline-flex;align-items:center;gap:5px;font-size:12px;cursor:pointer;">
-                                  <input type="radio" name="companion-req" value="opt" checked> 선택
-                                </label>
-                              </div>
-                            </div>
-                          </td>
+                        <tr>
+                          <td>16</td>
+                          <td style="text-align:left;padding-left:10px;">동반 참석</td>
+                          <td style="text-align:left;padding-left:8px;color:#666;">임직원 검색</td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-16" value="none" checked onchange="toggleCompanionRequired(false)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-16" value="opt" onchange="toggleCompanionRequired(true)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-16" value="req" onchange="toggleCompanionRequired(true)"></label></td>
                         </tr>
                       </tbody>
                     </table>
@@ -2512,11 +2496,10 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
 <script>
 /* ── 동반 참석 사용여부 토글 ── */
 function toggleCompanionRequired(enabled) {
-  var wrap = document.getElementById('companion-required-wrap');
-  wrap.style.display = enabled ? 'flex' : 'none';
-  if (!enabled) {
-    document.querySelector('input[name="companion-req"][value="opt"]').checked = true;
-  }
+  /* 미사용(none) 선택 시 하위 옵션 숨김, 선택/필수 시 노출 */
+  var val = document.querySelector('input[name="iof-16"]:checked');
+  var isEnabled = val && val.value !== 'none';
+  /* 하위 옵션 행이 없으므로 현재는 상태만 관리 */
 }
 
 
@@ -2640,7 +2623,8 @@ var _defaultInputFields = [
   {n:'iof-12', def:'opt'},
   {n:'iof-13', def:'opt'},
   {n:'iof-14', def:'opt'},
-  {n:'iof-15', def:'opt'}
+  {n:'iof-15', def:'opt'},
+  {n:'iof-16', def:'none'}  /* 동반 참석 — 기본값 미사용 */
 ];
 function resetInputFields() {
   if (!confirm('입력 항목 설정을 기본값으로 초기화하시겠습니까?')) return;
