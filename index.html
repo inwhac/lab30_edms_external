@@ -2054,12 +2054,14 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                   <div class="setting-block-header">📝 신청서 입력 항목 설정</div>
                   <div class="setting-block-body">
                     <div style="font-size:12px;color:#888;margin-bottom:12px;">학습자가 사외교육 신청 시 작성하는 항목의 필수/선택/미사용을 설정합니다.</div>
+                    <div style="font-size:11px;color:#999;margin-bottom:8px;">💡 <strong style="color:#555;">노출 항목명</strong>은 학습자에게 표시되는 이름입니다. 수정하지 않으면 관리 항목명이 그대로 사용됩니다.</div>
                     <table class="main-table" style="font-size:12px;">
                       <thead>
                         <tr>
                           <th style="width:36px;">No.</th>
-                          <th style="text-align:left;padding-left:10px;">항목명</th>
-                          <th style="width:160px;">입력 방식</th>
+                          <th style="text-align:left;padding-left:10px;width:120px;">관리 항목명</th>
+                          <th style="text-align:left;padding-left:8px;width:150px;">노출 항목명</th>
+                          <th style="width:150px;">입력 방식</th>
                           <th style="width:64px;">미사용</th>
                           <th style="width:64px;">선택</th>
                           <th style="width:64px;">필수</th>
@@ -2067,91 +2069,91 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                       </thead>
                       <tbody>
                         <tr>
-                          <td>1</td><td style="text-align:left;padding-left:10px;">교육명</td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td>
+                          <td>1</td><td style="text-align:left;padding-left:10px;">교육명</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육명" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-1" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-1" value="opt"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-1" value="req" checked></label></td>
                         </tr>
                         <tr>
-                          <td>2</td><td style="text-align:left;padding-left:10px;">교육유형</td><td style="text-align:left;padding-left:8px;color:#666;">선택</td>
+                          <td>2</td><td style="text-align:left;padding-left:10px;">교육유형</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육유형" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">선택</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-2" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-2" value="opt"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-2" value="req" checked></label></td>
                         </tr>
                         <tr>
-                          <td>3</td><td style="text-align:left;padding-left:10px;">교육기간</td><td style="text-align:left;padding-left:8px;color:#666;">날짜 선택</td>
+                          <td>3</td><td style="text-align:left;padding-left:10px;">교육기간</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육기간" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">날짜 선택</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-3" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-3" value="opt"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-3" value="req" checked></label></td>
                         </tr>
                         <tr>
-                          <td>4</td><td style="text-align:left;padding-left:10px;">교육일</td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력 (숫자만)</td>
+                          <td>4</td><td style="text-align:left;padding-left:10px;">교육일</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육일" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력 (숫자만)</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-4" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-4" value="opt"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-4" value="req" checked></label></td>
                         </tr>
                         <tr>
-                          <td>5</td><td style="text-align:left;padding-left:10px;">교육시간</td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력 (숫자만)</td>
+                          <td>5</td><td style="text-align:left;padding-left:10px;">교육시간</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육시간" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력 (숫자만)</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-5" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-5" value="opt"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-5" value="req" checked></label></td>
                         </tr>
                         <tr>
-                          <td>6</td><td style="text-align:left;padding-left:10px;">교육비</td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력 (숫자만)</td>
+                          <td>6</td><td style="text-align:left;padding-left:10px;">교육비</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육비" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력 (숫자만)</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-6" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-6" value="opt"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-6" value="req" checked></label></td>
                         </tr>
                         <tr>
-                          <td>7</td><td style="text-align:left;padding-left:10px;">교육기관</td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td>
+                          <td>7</td><td style="text-align:left;padding-left:10px;">교육기관</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육기관" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-7" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-7" value="opt"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-7" value="req" checked></label></td>
                         </tr>
                         <tr>
-                          <td>8</td><td style="text-align:left;padding-left:10px;">교육장소</td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td>
+                          <td>8</td><td style="text-align:left;padding-left:10px;">교육장소</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육장소" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-8" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-8" value="opt" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-8" value="req"></label></td>
                         </tr>
                         <tr>
-                          <td>9</td><td style="text-align:left;padding-left:10px;">교육 URL</td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td>
+                          <td>9</td><td style="text-align:left;padding-left:10px;">교육 URL</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육 URL" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-9" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-9" value="opt" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-9" value="req"></label></td>
                         </tr>
                         <tr>
-                          <td>10</td><td style="text-align:left;padding-left:10px;">교육기관 위치</td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td>
+                          <td>10</td><td style="text-align:left;padding-left:10px;">교육기관 위치</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육기관 위치" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-10" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-10" value="opt" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-10" value="req"></label></td>
                         </tr>
                         <tr>
-                          <td>11</td><td style="text-align:left;padding-left:10px;">교육기관 전화번호</td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td>
+                          <td>11</td><td style="text-align:left;padding-left:10px;">교육기관 전화번호</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육기관 전화번호" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-11" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-11" value="opt" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-11" value="req"></label></td>
                         </tr>
                         <tr>
-                          <td>12</td><td style="text-align:left;padding-left:10px;">교육 목적</td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td>
+                          <td>12</td><td style="text-align:left;padding-left:10px;">교육 목적</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육 목적" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-12" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-12" value="opt" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-12" value="req"></label></td>
                         </tr>
                         <tr>
-                          <td>13</td><td style="text-align:left;padding-left:10px;">교육 내용</td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력 (에디터)</td>
+                          <td>13</td><td style="text-align:left;padding-left:10px;">교육 내용</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육 내용" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력 (에디터)</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-13" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-13" value="opt" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-13" value="req"></label></td>
                         </tr>
                         <tr>
-                          <td>14</td><td style="text-align:left;padding-left:10px;">학점</td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력 (숫자만)</td>
+                          <td>14</td><td style="text-align:left;padding-left:10px;">학점</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="학점" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력 (숫자만)</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-14" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-14" value="opt" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-14" value="req"></label></td>
                         </tr>
                         <tr>
-                          <td>15</td><td style="text-align:left;padding-left:10px;">첨부파일</td><td style="text-align:left;padding-left:8px;color:#666;">직접 등록</td>
+                          <td>15</td><td style="text-align:left;padding-left:10px;">첨부파일</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="첨부파일" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 등록</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-15" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-15" value="opt" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-15" value="req"></label></td>
@@ -2159,6 +2161,7 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                         <tr>
                           <td>16</td>
                           <td style="text-align:left;padding-left:10px;">동반 참석</td>
+                          <td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="동반 참석" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
                           <td style="text-align:left;padding-left:8px;color:#666;">임직원 검색</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-16" value="none" checked onchange="toggleCompanionRequired(false)"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-16" value="opt" onchange="toggleCompanionRequired(true)"></label></td>
@@ -2166,10 +2169,6 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                         </tr>
                       </tbody>
                     </table>
-                    <div style="display:flex;justify-content:flex-end;margin-top:14px;gap:8px;">
-                      <button class="btn btn-reset" onclick="resetInputFields()">초기화</button>
-                      <button class="btn btn-primary" onclick="alert('저장되었습니다.')">저장</button>
-                    </div>
                   </div>
                 </div>
 
@@ -2182,11 +2181,13 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                     <!-- 4-1. 신청서 입력 항목 연동 여부 -->
                     <div style="font-size:13px;font-weight:700;color:#222;margin-bottom:8px;">신청서 입력 항목 연동 여부</div>
                     <div style="font-size:12px;color:#888;margin-bottom:10px;">사용(연동) 선택 시 결과보고 작성 시 신청서에 입력한 값이 자동으로 채워집니다. 사용(비연동) 선택 시 항목은 노출되나 자동 입력되지 않습니다.</div>
+                    <div style="font-size:11px;color:#999;margin-bottom:8px;">💡 <strong style="color:#555;">노출 항목명</strong>은 결과보고 양식에 표시되는 이름입니다. 수정하지 않으면 관리 항목명이 그대로 사용됩니다.</div>
                     <table class="main-table" style="font-size:12px;margin-bottom:20px;">
                       <thead>
                         <tr>
                           <th style="width:36px;">No.</th>
-                          <th style="text-align:left;padding-left:10px;">항목명</th>
+                          <th style="text-align:left;padding-left:10px;width:120px;">관리 항목명</th>
+                          <th style="text-align:left;padding-left:8px;width:150px;">노출 항목명</th>
                           <th style="width:80px;">미사용</th>
                           <th style="width:100px;">사용(비연동)</th>
                           <th style="width:100px;">사용(연동)</th>
@@ -2194,67 +2195,67 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                       </thead>
                       <tbody>
                         <tr>
-                          <td>1</td><td style="text-align:left;padding-left:10px;">교육명</td>
+                          <td>1</td><td style="text-align:left;padding-left:10px;">교육명</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육명" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-1" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-1" value="nosync"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-1" value="sync" checked></label></td>
                         </tr>
                         <tr>
-                          <td>2</td><td style="text-align:left;padding-left:10px;">교육유형</td>
+                          <td>2</td><td style="text-align:left;padding-left:10px;">교육유형</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육유형" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-2" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-2" value="nosync"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-2" value="sync" checked></label></td>
                         </tr>
                         <tr>
-                          <td>3</td><td style="text-align:left;padding-left:10px;">교육기간</td>
+                          <td>3</td><td style="text-align:left;padding-left:10px;">교육기간</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육기간" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-3" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-3" value="nosync"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-3" value="sync" checked></label></td>
                         </tr>
                         <tr>
-                          <td>4</td><td style="text-align:left;padding-left:10px;">교육일</td>
+                          <td>4</td><td style="text-align:left;padding-left:10px;">교육일</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육일" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-4" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-4" value="nosync"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-4" value="sync" checked></label></td>
                         </tr>
                         <tr>
-                          <td>5</td><td style="text-align:left;padding-left:10px;">교육시간</td>
+                          <td>5</td><td style="text-align:left;padding-left:10px;">교육시간</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육시간" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-5" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-5" value="nosync"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-5" value="sync" checked></label></td>
                         </tr>
                         <tr>
-                          <td>6</td><td style="text-align:left;padding-left:10px;">교육비</td>
+                          <td>6</td><td style="text-align:left;padding-left:10px;">교육비</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육비" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-6" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-6" value="nosync"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-6" value="sync" checked></label></td>
                         </tr>
                         <tr>
-                          <td>7</td><td style="text-align:left;padding-left:10px;">교육기관</td>
+                          <td>7</td><td style="text-align:left;padding-left:10px;">교육기관</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육기관" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-7" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-7" value="nosync"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-7" value="sync" checked></label></td>
                         </tr>
                         <tr>
-                          <td>8</td><td style="text-align:left;padding-left:10px;">교육장소</td>
+                          <td>8</td><td style="text-align:left;padding-left:10px;">교육장소</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육장소" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-8" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-8" value="nosync" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-8" value="sync"></label></td>
                         </tr>
                         <tr>
-                          <td>9</td><td style="text-align:left;padding-left:10px;">교육 URL</td>
+                          <td>9</td><td style="text-align:left;padding-left:10px;">교육 URL</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육 URL" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-9" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-9" value="nosync" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-9" value="sync"></label></td>
                         </tr>
                         <tr>
-                          <td>10</td><td style="text-align:left;padding-left:10px;">교육 목적</td>
+                          <td>10</td><td style="text-align:left;padding-left:10px;">교육 목적</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육 목적" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-10" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-10" value="nosync" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-10" value="sync"></label></td>
                         </tr>
                         <tr>
-                          <td>11</td><td style="text-align:left;padding-left:10px;">동반 참석자</td>
+                          <td>11</td><td style="text-align:left;padding-left:10px;">동반 참석자</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="동반 참석자" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-11" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-11" value="nosync" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-11" value="sync"></label></td>
@@ -2272,8 +2273,9 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                       <thead>
                         <tr>
                           <th style="width:36px;">No.</th>
-                          <th style="text-align:left;padding-left:10px;">항목명</th>
-                          <th style="width:160px;">입력 방식</th>
+                          <th style="text-align:left;padding-left:10px;width:120px;">관리 항목명</th>
+                          <th style="text-align:left;padding-left:8px;width:150px;">노출 항목명</th>
+                          <th style="width:150px;">입력 방식</th>
                           <th style="width:64px;">미사용</th>
                           <th style="width:64px;">선택</th>
                           <th style="width:64px;">필수</th>
@@ -2281,65 +2283,68 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                       </thead>
                       <tbody>
                         <tr>
-                          <td>1</td><td style="text-align:left;padding-left:10px;">교육주제</td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td>
+                          <td>1</td><td style="text-align:left;padding-left:10px;">교육주제</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육주제" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-1" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-1" value="opt"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-1" value="req" checked></label></td>
                         </tr>
                         <tr>
-                          <td>2</td><td style="text-align:left;padding-left:10px;">교육내용</td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력 (에디터)</td>
+                          <td>2</td><td style="text-align:left;padding-left:10px;">교육내용</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육내용" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력 (에디터)</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-2" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-2" value="opt"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-2" value="req" checked></label></td>
                         </tr>
                         <tr>
-                          <td>3</td><td style="text-align:left;padding-left:10px;">교육만족도</td><td style="text-align:left;padding-left:8px;color:#666;">선택</td>
+                          <td>3</td><td style="text-align:left;padding-left:10px;">교육만족도</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육만족도" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">선택</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-3" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-3" value="opt" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-3" value="req"></label></td>
                         </tr>
                         <tr>
-                          <td>4</td><td style="text-align:left;padding-left:10px;">강사만족도</td><td style="text-align:left;padding-left:8px;color:#666;">선택</td>
+                          <td>4</td><td style="text-align:left;padding-left:10px;">강사만족도</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="강사만족도" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">선택</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-4" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-4" value="opt" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-4" value="req"></label></td>
                         </tr>
                         <tr>
-                          <td>5</td><td style="text-align:left;padding-left:10px;">장소만족도</td><td style="text-align:left;padding-left:8px;color:#666;">선택</td>
+                          <td>5</td><td style="text-align:left;padding-left:10px;">장소만족도</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="장소만족도" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">선택</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-5" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-5" value="opt" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-5" value="req"></label></td>
                         </tr>
                         <tr>
-                          <td>6</td><td style="text-align:left;padding-left:10px;">업무활용도</td><td style="text-align:left;padding-left:8px;color:#666;">선택</td>
+                          <td>6</td><td style="text-align:left;padding-left:10px;">업무활용도</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="업무활용도" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">선택</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-6" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-6" value="opt" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-6" value="req"></label></td>
                         </tr>
                         <tr>
-                          <td>7</td><td style="text-align:left;padding-left:10px;">전체교육평가</td><td style="text-align:left;padding-left:8px;color:#666;">선택</td>
+                          <td>7</td><td style="text-align:left;padding-left:10px;">전체교육평가</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="전체교육평가" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">선택</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-7" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-7" value="opt" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-7" value="req"></label></td>
                         </tr>
                         <tr>
-                          <td>8</td><td style="text-align:left;padding-left:10px;">첨부파일</td><td style="text-align:left;padding-left:8px;color:#666;">직접 등록</td>
+                          <td>8</td><td style="text-align:left;padding-left:10px;">첨부파일</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="첨부파일" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 등록</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-8" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-8" value="opt" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-8" value="req"></label></td>
                         </tr>
                       </tbody>
                     </table>
-                    <div style="display:flex;justify-content:flex-end;margin-top:14px;gap:8px;">
-                      <button class="btn btn-reset" onclick="resetReportFields()">초기화</button>
-                      <button class="btn btn-primary" onclick="alert('저장되었습니다.')">저장</button>
-                    </div>
                   </div>
                 </div>
 
               </div><!-- /outside-settings-wrap -->
 
             </div>
+
+            <!-- ── 설정 탭 전체 저장 버튼 ── -->
+            <div style="display:flex;justify-content:flex-end;align-items:center;gap:8px;padding:20px 0 4px;border-top:1px solid var(--border);margin-top:8px;">
+              <button class="btn btn-reset" onclick="resetAllConfigFields()">초기화</button>
+              <button class="btn btn-primary" onclick="alert('설정이 저장되었습니다.')">저장</button>
+            </div>
+
           </div><!-- /panel-config -->
 
         </div><!-- /padding wrapper -->
@@ -2683,6 +2688,33 @@ function resetReportFields() {
   _defaultReportFields.forEach(function(f) {
     var el = document.querySelector('input[name="' + f.n + '"][value="' + f.def + '"]');
     if (el) el.checked = true;
+  });
+}
+
+/* ── 설정 탭 전체 초기화 ── */
+function resetAllConfigFields() {
+  if (!confirm('사외교육 설정 전체를 기본값으로 초기화하시겠습니까?')) return;
+  /* 신청서 항목 라디오 */
+  _defaultInputFields.forEach(function(f) {
+    var el = document.querySelector('input[name="' + f.n + '"][value="' + f.def + '"]');
+    if (el) el.checked = true;
+  });
+  /* 보고서 연동 + 항목 라디오 */
+  _defaultReportSyncFields.forEach(function(f) {
+    var el = document.querySelector('input[name="' + f.n + '"][value="' + f.def + '"]');
+    if (el) el.checked = true;
+  });
+  _defaultReportFields.forEach(function(f) {
+    var el = document.querySelector('input[name="' + f.n + '"][value="' + f.def + '"]');
+    if (el) el.checked = true;
+  });
+  /* 노출 항목명 인풋 기본값 복원 */
+  document.querySelectorAll('.expose-name-input').forEach(function(inp) {
+    var row = inp.closest('tr');
+    if (row) {
+      var mgmtCell = row.querySelector('td:nth-child(2)');
+      if (mgmtCell) inp.value = mgmtCell.textContent.trim();
+    }
   });
 }
 </script>
