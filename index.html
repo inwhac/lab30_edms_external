@@ -2158,8 +2158,28 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-15" value="opt" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-15" value="req"></label></td>
                         </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- 동반 참석 별도 섹션 -->
+                    <div style="border-top:1px solid var(--border);margin:18px 0 14px;"></div>
+                    <div style="font-size:13px;font-weight:700;color:#222;margin-bottom:6px;">동반 참석</div>
+                    <div style="font-size:12px;color:#888;margin-bottom:10px;">동반 참석 항목은 별도 기능으로 관리됩니다. 신청서 양식에 노출 여부와 노출 항목명을 설정합니다.</div>
+                    <table class="main-table" style="font-size:12px;">
+                      <thead>
                         <tr>
-                          <td>16</td>
+                          <th style="width:36px;">No.</th>
+                          <th style="text-align:left;padding-left:10px;width:120px;">관리 항목명</th>
+                          <th style="text-align:left;padding-left:8px;width:150px;">노출 항목명</th>
+                          <th style="width:150px;">입력 방식</th>
+                          <th style="width:64px;">미사용</th>
+                          <th style="width:64px;">선택</th>
+                          <th style="width:64px;">필수</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
                           <td style="text-align:left;padding-left:10px;">동반 참석</td>
                           <td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="동반 참석" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
                           <td style="text-align:left;padding-left:8px;color:#666;">임직원 검색</td>
@@ -2254,12 +2274,6 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-10" value="nosync" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-10" value="sync"></label></td>
                         </tr>
-                        <tr>
-                          <td>11</td><td style="text-align:left;padding-left:10px;">동반 참석자</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="동반 참석자" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-11" value="none"></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-11" value="nosync" checked></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-11" value="sync"></label></td>
-                        </tr>
                       </tbody>
                     </table>
 
@@ -2329,6 +2343,31 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-8" value="none"></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-8" value="opt" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-8" value="req"></label></td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- 동반 참석 별도 섹션 -->
+                    <div style="border-top:1px solid var(--border);margin:18px 0 14px;"></div>
+                    <div style="font-size:13px;font-weight:700;color:#222;margin-bottom:6px;">동반 참석</div>
+                    <div style="font-size:12px;color:#888;margin-bottom:10px;">동반 참석 항목은 별도 기능으로 관리됩니다. 결과보고 양식 내 노출 여부 및 신청서 연동 방식을 설정합니다.</div>
+                    <table class="main-table" style="font-size:12px;">
+                      <thead>
+                        <tr>
+                          <th style="width:36px;">No.</th>
+                          <th style="text-align:left;padding-left:10px;width:120px;">관리 항목명</th>
+                          <th style="text-align:left;padding-left:8px;width:150px;">노출 항목명</th>
+                          <th style="width:80px;">미사용</th>
+                          <th style="width:100px;">사용(비연동)</th>
+                          <th style="width:100px;">사용(연동)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td><td style="text-align:left;padding-left:10px;">동반 참석자</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="동반 참석자" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-11" value="none"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-11" value="nosync" checked></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-11" value="sync"></label></td>
                         </tr>
                       </tbody>
                     </table>
