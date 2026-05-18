@@ -1741,7 +1741,7 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                   <th>이름</th><th>아이디</th><th>사번</th><th>회사명</th><th>부서명</th>
                   <th>교육명</th><th>교육 유형</th>
                   <th>교육 기간</th><th>교육비(원)</th>
-                  <th>신청일</th><th>결재 상태</th><th>상세</th>
+                  <th>신청일</th><th>상태</th><th>상세</th>
                 </tr></thead>
                 <tbody>
                   <tr>
@@ -1892,7 +1892,7 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                   <th>이름</th><th>아이디</th><th>사번</th><th>회사명</th><th>부서명</th>
                   <th>교육명</th><th>교육 유형</th>
                   <th>교육 기간</th><th>교육비(원)</th>
-                  <th>결재 상태</th><th>보고일</th><th>상세</th>
+                  <th>상태</th><th>보고일</th><th>상세</th>
                 </tr></thead>
                 <tbody>
                   <tr>
@@ -2158,29 +2158,11 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-15" value="opt" checked></label></td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-15" value="req"></label></td>
                         </tr>
-                      </tbody>
-                    </table>
-
-                    <!-- 동반 참석 별도 섹션 -->
-                    <div style="border-top:1px solid var(--border);margin:18px 0 14px;"></div>
-                    <div style="font-size:13px;font-weight:700;color:#222;margin-bottom:6px;">동반 참석</div>
-                    <div style="font-size:12px;color:#888;margin-bottom:10px;">동반 참석 항목은 별도 기능으로 관리됩니다. 신청서 양식에 노출 여부와 노출 항목명을 설정합니다.</div>
-                    <table class="main-table" style="font-size:12px;">
-                      <thead>
-                        <tr>
-                          <th style="width:36px;">No.</th>
-                          <th style="text-align:left;padding-left:10px;width:120px;">관리 항목명</th>
-                          <th style="text-align:left;padding-left:8px;width:150px;">노출 항목명</th>
-                          <th style="width:150px;">입력 방식</th>
-                          <th style="width:64px;">미사용</th>
-                          <th style="width:64px;">선택</th>
-                          <th style="width:64px;">필수</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td style="text-align:left;padding-left:10px;">동반 참석</td>
+                        <tr style="background:#fafbfe;">
+                          <td>16</td>
+                          <td style="text-align:left;padding-left:10px;">동반 참석
+                            
+                          </td>
                           <td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="동반 참석" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
                           <td style="text-align:left;padding-left:8px;color:#666;">임직원 검색</td>
                           <td><label style="justify-content:center;display:flex;"><input type="radio" name="iof-16" value="none" checked onchange="toggleCompanionRequired(false)"></label></td>
@@ -2211,74 +2193,97 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                           <th style="width:80px;">미사용</th>
                           <th style="width:100px;">사용(비연동)</th>
                           <th style="width:100px;">사용(연동)</th>
+                          <th style="width:90px;">선택/필수</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
                           <td>1</td><td style="text-align:left;padding-left:10px;">교육명</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육명" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-1" value="none"></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-1" value="nosync"></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-1" value="sync" checked></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-1" value="none" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-1" value="nosync" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-1" value="sync" checked onchange="updateSyncRowReq(this)"></label></td>
+                          <td><select class="select sync-req-sel" style="height:24px;font-size:11px;width:80px;"><option value="opt">선택</option><option value="req">필수</option></select></td>
                         </tr>
                         <tr>
                           <td>2</td><td style="text-align:left;padding-left:10px;">교육유형</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육유형" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-2" value="none"></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-2" value="nosync"></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-2" value="sync" checked></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-2" value="none" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-2" value="nosync" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-2" value="sync" checked onchange="updateSyncRowReq(this)"></label></td>
+                          <td><select class="select sync-req-sel" style="height:24px;font-size:11px;width:80px;"><option value="opt">선택</option><option value="req">필수</option></select></td>
                         </tr>
                         <tr>
                           <td>3</td><td style="text-align:left;padding-left:10px;">교육기간</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육기간" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-3" value="none"></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-3" value="nosync"></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-3" value="sync" checked></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-3" value="none" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-3" value="nosync" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-3" value="sync" checked onchange="updateSyncRowReq(this)"></label></td>
+                          <td><select class="select sync-req-sel" style="height:24px;font-size:11px;width:80px;"><option value="opt">선택</option><option value="req">필수</option></select></td>
                         </tr>
                         <tr>
                           <td>4</td><td style="text-align:left;padding-left:10px;">교육일</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육일" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-4" value="none"></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-4" value="nosync"></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-4" value="sync" checked></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-4" value="none" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-4" value="nosync" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-4" value="sync" checked onchange="updateSyncRowReq(this)"></label></td>
+                          <td><select class="select sync-req-sel" style="height:24px;font-size:11px;width:80px;"><option value="opt">선택</option><option value="req">필수</option></select></td>
                         </tr>
                         <tr>
                           <td>5</td><td style="text-align:left;padding-left:10px;">교육시간</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육시간" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-5" value="none"></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-5" value="nosync"></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-5" value="sync" checked></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-5" value="none" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-5" value="nosync" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-5" value="sync" checked onchange="updateSyncRowReq(this)"></label></td>
+                          <td><select class="select sync-req-sel" style="height:24px;font-size:11px;width:80px;"><option value="opt">선택</option><option value="req">필수</option></select></td>
                         </tr>
                         <tr>
                           <td>6</td><td style="text-align:left;padding-left:10px;">학점</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="학점" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-6" value="none"></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-6" value="nosync"></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-6" value="sync" checked></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-6" value="none" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-6" value="nosync" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-6" value="sync" checked onchange="updateSyncRowReq(this)"></label></td>
+                          <td><select class="select sync-req-sel" style="height:24px;font-size:11px;width:80px;"><option value="opt">선택</option><option value="req">필수</option></select></td>
                         </tr>
                         <tr>
                           <td>7</td><td style="text-align:left;padding-left:10px;">교육비</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육비" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-7" value="none"></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-7" value="nosync"></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-7" value="sync" checked></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-7" value="none" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-7" value="nosync" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-7" value="sync" checked onchange="updateSyncRowReq(this)"></label></td>
+                          <td><select class="select sync-req-sel" style="height:24px;font-size:11px;width:80px;"><option value="opt">선택</option><option value="req">필수</option></select></td>
                         </tr>
                         <tr>
                           <td>8</td><td style="text-align:left;padding-left:10px;">교육기관</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육기관" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-8" value="none"></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-8" value="nosync"></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-8" value="sync" checked></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-8" value="none" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-8" value="nosync" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-8" value="sync" checked onchange="updateSyncRowReq(this)"></label></td>
+                          <td><select class="select sync-req-sel" style="height:24px;font-size:11px;width:80px;"><option value="opt">선택</option><option value="req">필수</option></select></td>
                         </tr>
                         <tr>
                           <td>9</td><td style="text-align:left;padding-left:10px;">교육장소</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육장소" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-9" value="none"></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-9" value="nosync" checked></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-9" value="sync"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-9" value="none" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-9" value="nosync" checked onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-9" value="sync" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><select class="select sync-req-sel" style="height:24px;font-size:11px;width:80px;"><option value="opt">선택</option><option value="req">필수</option></select></td>
                         </tr>
                         <tr>
                           <td>10</td><td style="text-align:left;padding-left:10px;">교육 URL</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육 URL" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-10" value="none"></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-10" value="nosync" checked></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-10" value="sync"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-10" value="none" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-10" value="nosync" checked onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-10" value="sync" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><select class="select sync-req-sel" style="height:24px;font-size:11px;width:80px;"><option value="opt">선택</option><option value="req">필수</option></select></td>
                         </tr>
                         <tr>
                           <td>11</td><td style="text-align:left;padding-left:10px;">교육 목적</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육 목적" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-11" value="none"></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-11" value="nosync" checked></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-11" value="sync"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-11" value="none" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-11" value="nosync" checked onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-11" value="sync" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><select class="select sync-req-sel" style="height:24px;font-size:11px;width:80px;"><option value="opt">선택</option><option value="req">필수</option></select></td>
+                        </tr>
+                        <tr style="background:#fafbfe;">
+                          <td>12</td>
+                          <td style="text-align:left;padding-left:10px;">동반 참석자
+                            
+                          </td>
+                          <td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="동반 참석자" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-12" value="none" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-12" value="nosync" checked onchange="updateSyncRowReq(this)"></label></td>
+                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-12" value="sync" onchange="updateSyncRowReq(this)"></label></td>
+                          <td><select class="select sync-req-sel" style="height:24px;font-size:11px;width:80px;"><option value="opt">선택</option><option value="req">필수</option></select></td>
                         </tr>
                       </tbody>
                     </table>
@@ -2352,31 +2357,6 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                         </tr>
                       </tbody>
                     </table>
-
-                    <!-- 동반 참석 별도 섹션 -->
-                    <div style="border-top:1px solid var(--border);margin:18px 0 14px;"></div>
-                    <div style="font-size:13px;font-weight:700;color:#222;margin-bottom:6px;">동반 참석</div>
-                    <div style="font-size:12px;color:#888;margin-bottom:10px;">동반 참석 항목은 별도 기능으로 관리됩니다. 결과보고 양식 내 노출 여부 및 신청서 연동 방식을 설정합니다.</div>
-                    <table class="main-table" style="font-size:12px;">
-                      <thead>
-                        <tr>
-                          <th style="width:36px;">No.</th>
-                          <th style="text-align:left;padding-left:10px;width:120px;">관리 항목명</th>
-                          <th style="text-align:left;padding-left:8px;width:150px;">노출 항목명</th>
-                          <th style="width:80px;">미사용</th>
-                          <th style="width:100px;">사용(비연동)</th>
-                          <th style="width:100px;">사용(연동)</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>1</td><td style="text-align:left;padding-left:10px;">동반 참석자</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="동반 참석자" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-12" value="none"></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-12" value="nosync" checked></label></td>
-                          <td><label style="justify-content:center;display:flex;"><input type="radio" name="rof-sync-12" value="sync"></label></td>
-                        </tr>
-                      </tbody>
-                    </table>
                   </div>
                 </div>
 
@@ -2413,7 +2393,7 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
         <div class="ifg-row"><div class="ifg-label">신청자</div><div class="ifg-control">김*수 (kim**@ewha.com / 20240012)</div></div>
         <div class="ifg-row"><div class="ifg-label">부서</div><div class="ifg-control">기술연구소</div></div>
         <div class="ifg-row"><div class="ifg-label">신청일</div><div class="ifg-control">2026-04-21</div></div>
-        <div class="ifg-row"><div class="ifg-label">결재 상태</div><div class="ifg-control"><span class="badge-tag" style="background:#fff8e1;color:#e65100;">대기</span></div></div>
+        <div class="ifg-row"><div class="ifg-label">상태</div><div class="ifg-control"><span class="badge-tag" style="background:#fff8e1;color:#e65100;">대기</span></div></div>
       </div>
       <!-- 교육 정보 -->
       <div style="font-size:12px;font-weight:700;color:#1a73e8;border-bottom:1px solid #e3f0fd;padding-bottom:4px;margin-bottom:2px;">교육 정보</div>
@@ -2496,7 +2476,7 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
       <div class="idp-form-grid" style="margin-bottom:14px;">
         <div class="ifg-row"><div class="ifg-label">신청자</div><div class="ifg-control">이*은 (lee**@ewha.com / 20230088)</div></div>
         <div class="ifg-row"><div class="ifg-label">부서</div><div class="ifg-control">인사팀</div></div>
-        <div class="ifg-row"><div class="ifg-label">결재 상태</div><div class="ifg-control"><span class="badge-tag" style="background:#e8f5e9;color:#2e7d32;">승인</span></div></div>
+        <div class="ifg-row"><div class="ifg-label">상태</div><div class="ifg-control"><span class="badge-tag" style="background:#e8f5e9;color:#2e7d32;">승인</span></div></div>
         <div class="ifg-row"><div class="ifg-label">보고일</div><div class="ifg-control">2026-04-25</div></div>
       </div>
       <!-- 신청서 연동 항목 -->
@@ -2564,11 +2544,28 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
 <script>
 /* ── 동반 참석 사용여부 토글 ── */
 function toggleCompanionRequired(enabled) {
-  /* 미사용(none) 선택 시 하위 옵션 숨김, 선택/필수 시 노출 */
   var val = document.querySelector('input[name="iof-16"]:checked');
   var isEnabled = val && val.value !== 'none';
-  /* 하위 옵션 행이 없으므로 현재는 상태만 관리 */
 }
+
+/* ── 신청서 연동 여부 테이블: 미사용 시 선택/필수 비활성화 ── */
+function updateSyncRowReq(radio) {
+  var tr = radio.closest('tr');
+  var sel = tr.querySelector('.sync-req-sel');
+  if (!sel) return;
+  var isNone = (radio.value === 'none');
+  sel.disabled = isNone;
+  sel.style.background = isNone ? '#f0f2f5' : '';
+  sel.style.color = isNone ? '#bbb' : '';
+  sel.style.cursor = isNone ? 'not-allowed' : '';
+}
+
+/* ── 페이지 로드 시 선택/필수 초기 상태 적용 ── */
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('[name^="rof-sync-"]:checked').forEach(function(radio) {
+    updateSyncRowReq(radio);
+  });
+});
 
 
 function switchOutsideTab(tab) {
