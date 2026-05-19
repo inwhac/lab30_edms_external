@@ -1990,6 +1990,9 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                       </label>
                     </div>
                   </div>
+                  <div style="display:flex;justify-content:flex-end;align-items:center;padding-top:14px;border-top:1px solid var(--border);margin-top:14px;">
+                    <button class="btn btn-primary" onclick="alert('사외교육 사용 설정이 저장되었습니다.')">저장</button>
+                  </div>
                 </div>
               </div>
 
@@ -2171,6 +2174,10 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                         </tr>
                       </tbody>
                     </table>
+                    <div style="display:flex;justify-content:flex-end;align-items:center;gap:8px;padding-top:14px;border-top:1px solid var(--border);margin-top:14px;">
+                      <button class="btn btn-reset" onclick="resetInputFields()">초기화</button>
+                      <button class="btn btn-primary" onclick="alert('신청서 입력 항목 설정이 저장되었습니다.')">저장</button>
+                    </div>
                   </div>
                 </div>
 
@@ -2357,17 +2364,15 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                         </tr>
                       </tbody>
                     </table>
+                    <div style="display:flex;justify-content:flex-end;align-items:center;gap:8px;padding-top:14px;border-top:1px solid var(--border);margin-top:14px;">
+                      <button class="btn btn-reset" onclick="resetReportFields()">초기화</button>
+                      <button class="btn btn-primary" onclick="alert('보고서 입력 항목 설정이 저장되었습니다.')">저장</button>
+                    </div>
                   </div>
                 </div>
 
               </div><!-- /outside-settings-wrap -->
 
-            </div>
-
-            <!-- ── 설정 탭 전체 저장 버튼 ── -->
-            <div style="display:flex;justify-content:flex-end;align-items:center;gap:8px;padding:20px 0 4px;border-top:1px solid var(--border);margin-top:8px;">
-              <button class="btn btn-reset" onclick="resetAllConfigFields()">초기화</button>
-              <button class="btn btn-primary" onclick="alert('설정이 저장되었습니다.')">저장</button>
             </div>
 
           </div><!-- /panel-config -->
