@@ -1222,6 +1222,8 @@
 .setting-ctrl { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 .radio-opt { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #444; cursor: pointer; }
 .radio-opt input { accent-color: var(--primary); cursor: pointer; }
+.setting-block.is-hidden-case { display:none; }
+.case-note { font-size:11px; color:#c62828; background:#fff5f5; border:1px solid #f5c5c5; border-radius:4px; padding:7px 10px; margin-bottom:10px; line-height:1.5; }
 .setting-notice {
   background: #f0f6ff; border: 1px solid #c8dff8; border-radius: 4px;
   padding: 10px 14px; font-size: 12px; color: #4477aa; line-height: 1.7;
@@ -1990,8 +1992,39 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                       </label>
                     </div>
                   </div>
+
+                  <!-- 릴리즈 2.2.0: 노출 명칭 + 신청/결과보고 사용 스위치 -->
+                  <div id="outside-subuse-wrap" style="display:flex;flex-direction:column;gap:14px;margin-top:16px;padding-top:16px;border-top:1px dashed var(--border);opacity:0.4;pointer-events:none;">
+                    <div class="setting-row">
+                      <div class="setting-label">사외교육 노출 명칭</div>
+                      <div class="setting-ctrl" style="flex-direction:column;align-items:flex-start;gap:5px;">
+                        <input type="text" id="outside-label-input" value="사외교육" maxlength="13" oninput="onOutsideLabelInput()"
+                          style="width:220px;height:30px;border:1px solid #dde1e7;border-radius:4px;padding:0 10px;font-size:13px;color:#333;font-family:inherit;outline:none;"
+                          onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'">
+                        <span style="font-size:11px;color:#999;">연수원(사용자) 서비스에 노출되는 명칭입니다. 관리자(EDMS) 화면은 '사외교육'으로 고정됩니다. · <span id="outside-label-count">4</span>/13자</span>
+                      </div>
+                    </div>
+                    <div class="setting-row">
+                      <div class="setting-label">신청 기능 사용</div>
+                      <div class="setting-ctrl">
+                        <label class="radio-opt"><input type="radio" name="outside-apply-use" value="use" checked onchange="onSubUseChange()"> 사용</label>
+                        <label class="radio-opt"><input type="radio" name="outside-apply-use" value="nouse" onchange="onSubUseChange()"> 미사용</label>
+                      </div>
+                    </div>
+                    <div class="setting-row">
+                      <div class="setting-label">결과보고 기능 사용</div>
+                      <div class="setting-ctrl">
+                        <label class="radio-opt"><input type="radio" name="outside-report-use" value="use" checked onchange="onSubUseChange()"> 사용</label>
+                        <label class="radio-opt"><input type="radio" name="outside-report-use" value="nouse" onchange="onSubUseChange()"> 미사용</label>
+                      </div>
+                    </div>
+                    <div id="subuse-hint" style="font-size:11px;color:#1a5cc8;background:#eef4ff;border:1px solid #c5d8f7;border-radius:4px;padding:8px 10px;line-height:1.5;">
+                      신청·결과보고 모두 사용 시 — 결과보고는 신청 건에 대해서만 등록 가능합니다. (예: A 교육 신청 → A 교육에 대해서만 결과보고)
+                    </div>
+                  </div>
+
                   <div style="display:flex;justify-content:flex-end;align-items:center;padding-top:14px;border-top:1px solid var(--border);margin-top:14px;">
-                    <button class="btn btn-primary" onclick="alert('사외교육 사용 설정이 저장되었습니다.')">저장</button>
+                    <button class="btn btn-primary" onclick="saveOutsideUse()">저장</button>
                   </div>
                 </div>
               </div>
@@ -1999,7 +2032,7 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
               <!-- 하단 비활성화 래퍼 -->
               <div id="outside-settings-wrap" style="display:flex;flex-direction:column;gap:20px;opacity:0.4;pointer-events:none;">
 
-                <!-- 2. 교육 유형 설정 -->
+                <!-- 3. 교육 유형 설정 -->
                 <div class="setting-block">
                   <div class="setting-block-header">📋 교육 유형 설정</div>
                   <div class="setting-block-body">
@@ -2052,10 +2085,11 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                   </div>
                 </div>
 
-                <!-- 3. 신청서 입력 항목 설정 -->
-                <div class="setting-block">
+                <!-- 4. 신청서 입력 항목 설정 -->
+                <div class="setting-block" id="block-apply-fields">
                   <div class="setting-block-header">📝 신청서 입력 항목 설정</div>
                   <div class="setting-block-body">
+                    <div class="case-note" id="apply-fields-casenote" style="display:none;">결과보고만 사용 중 — 신청서 입력 항목 설정은 노출되지 않습니다.</div>
                     <div style="font-size:12px;color:#888;margin-bottom:12px;">학습자가 사외교육 신청 시 작성하는 항목의 필수/선택/미사용을 설정합니다.</div>
                     <div style="font-size:11px;color:#999;margin-bottom:8px;">💡 <strong style="color:#555;">노출 항목명</strong>은 학습자에게 표시되는 이름입니다. 수정하지 않으면 관리 항목명이 그대로 사용됩니다.</div>
                     <table class="main-table" style="font-size:12px;">
@@ -2182,12 +2216,14 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                 </div>
 
 
-                <!-- 4. 보고서 입력 항목 설정 -->
-                <div class="setting-block">
+                <!-- 5. 보고서 입력 항목 설정 -->
+                <div class="setting-block" id="block-report-fields">
                   <div class="setting-block-header">📄 보고서 입력 항목 설정</div>
                   <div class="setting-block-body">
+                    <div class="case-note" id="report-fields-casenote" style="display:none;">신청만 사용 중 — 보고서 입력 항목 설정은 노출되지 않습니다.</div>
 
-                    <!-- 4-1. 신청서 입력 항목 연동 여부 -->
+                    <!-- 5-1. 신청서 입력 항목 연동 여부 -->
+                    <div id="report-sync-sub" style="margin-bottom:20px;">
                     <div style="font-size:13px;font-weight:700;color:#222;margin-bottom:8px;">신청서 입력 항목 연동 여부</div>
                     <div style="font-size:12px;color:#888;margin-bottom:10px;">사용(연동) 선택 시 결과보고 작성 시 신청서에 입력한 값이 자동으로 채워집니다. 사용(비연동) 선택 시 항목은 노출되나 자동 입력되지 않습니다.</div>
                     <div style="font-size:11px;color:#999;margin-bottom:8px;">💡 <strong style="color:#555;">노출 항목명</strong>은 결과보고 양식에 표시되는 이름입니다. 수정하지 않으면 관리 항목명이 그대로 사용됩니다.</div>
@@ -2295,10 +2331,12 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                       </tbody>
                     </table>
 
+                    </div><!-- /report-sync-sub (5-1) -->
+
                     <!-- 구분선 -->
                     <div style="border-top:1px solid var(--border);margin:4px 0 18px;"></div>
 
-                    <!-- 4-2. 보고서 입력 항목 설정 -->
+                    <!-- 5-2. 보고서 입력 항목 설정 -->
                     <div style="font-size:13px;font-weight:700;color:#222;margin-bottom:8px;">보고서 입력 항목 설정</div>
                     <div style="font-size:12px;color:#888;margin-bottom:10px;">결과보고 작성 시 학습자가 직접 입력하는 항목의 필수/선택/미사용을 설정합니다.</div>
                     <table class="main-table" style="font-size:12px;">
@@ -2313,6 +2351,23 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
                           <th style="width:64px;">필수</th>
                         </tr>
                       </thead>
+                      <!-- 케이스3(보고 단독) 전용: 신청서 정보 항목 직접 입력 설정 -->
+                      <tbody id="report-direct-edu-tbody" style="display:none;">
+                        <tr style="background:#f7faff;"><td colspan="7" style="text-align:left;padding:6px 10px;font-size:11px;font-weight:700;color:#1a5cc8;">교육 정보 (직접 입력)</td></tr>
+                        <tr><td>1</td><td style="text-align:left;padding-left:10px;">교육명</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육명" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-1" value="none" disabled></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-1" value="opt"></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-1" value="req" checked></label></td></tr>
+                        <tr><td>2</td><td style="text-align:left;padding-left:10px;">교육유형</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육유형" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">선택 (셀렉트박스)</td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-2" value="none" disabled></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-2" value="opt"></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-2" value="req" checked></label></td></tr>
+                        <tr><td>3</td><td style="text-align:left;padding-left:10px;">교육기간</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육기간" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">날짜 선택</td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-3" value="none" disabled></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-3" value="opt"></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-3" value="req" checked></label></td></tr>
+                        <tr><td>4</td><td style="text-align:left;padding-left:10px;">교육일</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육일" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력 (숫자만)</td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-4" value="none"></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-4" value="opt"></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-4" value="req" checked></label></td></tr>
+                        <tr><td>5</td><td style="text-align:left;padding-left:10px;">교육시간</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육시간" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력 (숫자만)</td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-5" value="none"></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-5" value="opt"></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-5" value="req" checked></label></td></tr>
+                        <tr><td>6</td><td style="text-align:left;padding-left:10px;">학점</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="학점" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력 (숫자만)</td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-6" value="none"></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-6" value="opt" checked></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-6" value="req"></label></td></tr>
+                        <tr><td>7</td><td style="text-align:left;padding-left:10px;">교육비</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육비" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력 (숫자만)</td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-7" value="none"></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-7" value="opt"></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-7" value="req" checked></label></td></tr>
+                        <tr><td>8</td><td style="text-align:left;padding-left:10px;">교육기관</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육기관" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-8" value="none"></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-8" value="opt"></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-8" value="req" checked></label></td></tr>
+                        <tr><td>9</td><td style="text-align:left;padding-left:10px;">교육장소</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육장소" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-9" value="none"></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-9" value="opt" checked></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-9" value="req"></label></td></tr>
+                        <tr><td>10</td><td style="text-align:left;padding-left:10px;">교육 URL</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육 URL" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-10" value="none"></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-10" value="opt" checked></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-10" value="req"></label></td></tr>
+                        <tr><td>11</td><td style="text-align:left;padding-left:10px;">교육 목적</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육 목적" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-11" value="none"></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-11" value="opt" checked></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-11" value="req"></label></td></tr>
+                        <tr><td>12</td><td style="text-align:left;padding-left:10px;">동반 참석자</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="동반 참석자" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">임직원 검색</td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-12" value="none"></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-12" value="opt" checked></label></td><td><label style="justify-content:center;display:flex;"><input type="radio" name="rde-12" value="req"></label></td></tr>
+                        <tr style="background:#f7faff;"><td colspan="7" style="text-align:left;padding:6px 10px;font-size:11px;font-weight:700;color:#1a5cc8;">결과보고 항목 (직접 입력)</td></tr>
+                      </tbody>
                       <tbody>
                         <tr>
                           <td>1</td><td style="text-align:left;padding-left:10px;">교육주제</td><td style="text-align:left;padding-left:8px;"><input type="text" class="expose-name-input" value="교육주제" style="width:130px;height:24px;border:1px solid #dde1e7;border-radius:3px;padding:0 6px;font-size:11px;color:#333;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#dde1e7'"></td><td style="text-align:left;padding-left:8px;color:#666;">직접 입력</td>
@@ -2476,16 +2531,16 @@ iframe.popup-frame { flex: 1; border: none; width: 100%; }
       <button class="modal-close" onclick="document.getElementById('report-detail-modal').classList.remove('open')">×</button>
     </div>
     <div class="modal-body" style="padding:20px 24px;">
-      <!-- 신청자 정보 -->
-      <div style="font-size:12px;font-weight:700;color:#1a73e8;border-bottom:1px solid #e3f0fd;padding-bottom:4px;margin-bottom:2px;">신청자 정보</div>
+      <!-- 보고자 정보 -->
+      <div style="font-size:12px;font-weight:700;color:#1a73e8;border-bottom:1px solid #e3f0fd;padding-bottom:4px;margin-bottom:2px;">보고자 정보</div>
       <div class="idp-form-grid" style="margin-bottom:14px;">
-        <div class="ifg-row"><div class="ifg-label">신청자</div><div class="ifg-control">이*은 (lee**@ewha.com / 20230088)</div></div>
+        <div class="ifg-row"><div class="ifg-label">보고자</div><div class="ifg-control">이*은 (lee**@ewha.com / 20230088)</div></div>
         <div class="ifg-row"><div class="ifg-label">부서</div><div class="ifg-control">인사팀</div></div>
         <div class="ifg-row"><div class="ifg-label">상태</div><div class="ifg-control"><span class="badge-tag" style="background:#e8f5e9;color:#2e7d32;">승인</span></div></div>
         <div class="ifg-row"><div class="ifg-label">보고일</div><div class="ifg-control">2026-04-25</div></div>
       </div>
-      <!-- 신청서 연동 항목 -->
-      <div style="font-size:12px;font-weight:700;color:#1a73e8;border-bottom:1px solid #e3f0fd;padding-bottom:4px;margin-bottom:2px;">교육 정보 <span style="font-size:11px;font-weight:400;color:#999;">(신청서 연동)</span></div>
+      <!-- 교육 정보 (신청+보고: 신청서 연동 / 보고 단독: 직접 입력) -->
+      <div style="font-size:12px;font-weight:700;color:#1a73e8;border-bottom:1px solid #e3f0fd;padding-bottom:4px;margin-bottom:2px;">교육 정보 <span style="font-size:11px;font-weight:400;color:#999;">(입력 항목 설정 기준)</span></div>
       <div class="idp-form-grid" style="margin-bottom:14px;">
         <div class="ifg-row"><div class="ifg-label">교육명</div><div class="ifg-control" style="font-weight:600;">2026 HR 컨퍼런스</div></div>
         <div class="ifg-row"><div class="ifg-label">교육유형</div><div class="ifg-control">세미나/컨퍼런스</div></div>
@@ -2570,6 +2625,9 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('[name^="rof-sync-"]:checked').forEach(function(radio) {
     updateSyncRowReq(radio);
   });
+  /* 사외교육 사용 상태면 케이스 노출 초기 반영 */
+  var useOn = document.querySelector('input[name="outside-use"]:checked');
+  if (useOn && useOn.value === 'use') applyCaseVisibility();
 });
 
 
@@ -2613,6 +2671,71 @@ function toggleOutsideSettings(enabled) {
   var wrap = document.getElementById('outside-settings-wrap');
   wrap.style.opacity = enabled ? '1' : '0.4';
   wrap.style.pointerEvents = enabled ? '' : 'none';
+  var subuse = document.getElementById('outside-subuse-wrap');
+  subuse.style.opacity = enabled ? '1' : '0.4';
+  subuse.style.pointerEvents = enabled ? '' : 'none';
+  if (enabled) applyCaseVisibility();
+}
+
+/* ── 노출 명칭 인풋 (13자 제한 + 글자수 카운트) ── */
+function onOutsideLabelInput() {
+  var input = document.getElementById('outside-label-input');
+  document.getElementById('outside-label-count').textContent = input.value.length;
+}
+
+/* ── 신청/결과보고 사용여부 변경 → 유효성 + 케이스 반영 ── */
+function onSubUseChange() {
+  var applyUse  = document.querySelector('input[name="outside-apply-use"]:checked').value === 'use';
+  var reportUse = document.querySelector('input[name="outside-report-use"]:checked').value === 'use';
+
+  /* 유효성: 둘 다 미사용이면 사외교육 기능 자체를 미사용으로 자동 전환 (케이스4) */
+  if (!applyUse && !reportUse) {
+    alert("신청과 결과보고를 모두 '미사용'으로 설정하여, 사외교육 기능이 '미사용'으로 전환됩니다.");
+    document.querySelector('input[name="outside-use"][value="nouse"]').checked = true;
+    toggleOutsideSettings(false);
+    return;
+  }
+  applyCaseVisibility();
+}
+
+/* ── 케이스별 노출 제어 (탭·설정 블록) ── */
+function applyCaseVisibility() {
+  var applyUse  = document.querySelector('input[name="outside-apply-use"]:checked').value === 'use';
+  var reportUse = document.querySelector('input[name="outside-report-use"]:checked').value === 'use';
+
+  /* 현황 탭 노출 (신청/결과보고) */
+  document.getElementById('tab-apply').style.display  = applyUse ? '' : 'none';
+  document.getElementById('tab-report').style.display = reportUse ? '' : 'none';
+  /* 숨겨진 탭이 활성 상태면 설정 탭으로 회피 */
+  var activeHidden = (!applyUse && document.getElementById('tab-apply').classList.contains('active'))
+                  || (!reportUse && document.getElementById('tab-report').classList.contains('active'));
+  if (activeHidden) switchOutsideTab('config');
+
+  /* 신청서 입력 항목 설정: 결과보고만 사용(신청 미사용) 시 미노출 */
+  var applyBlock = document.getElementById('block-apply-fields');
+  applyBlock.classList.toggle('is-hidden-case', !applyUse);
+
+  /* 보고서 입력 항목 설정 전체: 신청만 사용(보고 미사용) 시 미노출 */
+  var reportBlock = document.getElementById('block-report-fields');
+  reportBlock.classList.toggle('is-hidden-case', !reportUse);
+
+  /* 5-1 연동 여부: 결과보고만 사용 시 미노출 / 5-2에 신청서 정보 항목 노출 */
+  var reportOnly = reportUse && !applyUse;
+  document.getElementById('report-sync-sub').style.display = reportOnly ? 'none' : '';
+  document.getElementById('report-direct-edu-tbody').style.display = reportOnly ? '' : 'none';
+}
+
+function saveOutsideUse() {
+  var useOn = document.querySelector('input[name="outside-use"]:checked').value === 'use';
+  if (useOn) {
+    var applyUse  = document.querySelector('input[name="outside-apply-use"]:checked').value === 'use';
+    var reportUse = document.querySelector('input[name="outside-report-use"]:checked').value === 'use';
+    if (!applyUse && !reportUse) {
+      alert("신청과 결과보고 중 최소 하나는 '사용'으로 설정해주세요.\n사외교육 전체를 사용하지 않으려면 '사외교육 기능 사용'을 미사용으로 변경하세요.");
+      return;
+    }
+  }
+  alert('사외교육 사용 설정이 저장되었습니다.');
 }
 
 /* ── 교육 유형 데이터 ── */
